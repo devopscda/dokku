@@ -13,6 +13,8 @@ build-in-docker: clean
 		-v /tmp/dokku-go-build-cache:/root/.cache \
 		-e PLUGIN_NAME=$(PLUGIN_NAME) \
 		-e GO111MODULE=on \
+		-e HTTP_PROXY=$(HTTP_PROXY) \
+		-e HTTPS_PROXY=$(HTTPS_PROXY) \
 		-w $(GO_REPO_ROOT)/plugins/$(PLUGIN_NAME) \
 		$(BUILD_IMAGE) \
 		bash -c "GO_ARGS='$(GO_ARGS)' make -j4 build" || exit $$?
